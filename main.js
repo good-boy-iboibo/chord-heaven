@@ -331,7 +331,7 @@ window.onload = () => {
 
 
     const intervalSlider = document.getElementById('interval');
-    intervalSlider.oninput = () => {
+    intervalSlider.onchange = () => {
         interval = 1000. * (1.125 ** intervalSlider.value);
         document.getElementById('interval-label').textContent
             = `${(interval / 1000).toFixed(2)}s`;
