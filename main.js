@@ -331,10 +331,12 @@ window.onload = () => {
 
 
     const intervalSlider = document.getElementById('interval');
-    intervalSlider.onchange = () => {
+    intervalSlider.oninput = () => {
         interval = 1000. * (1.125 ** intervalSlider.value);
         document.getElementById('interval-label').textContent
             = `${(interval / 1000).toFixed(2)}s`;
+    };
+    intervalSlider.onchange = () => {
         clearInterval(timerID);
         timerID = setInterval(showChord, interval);
     };
