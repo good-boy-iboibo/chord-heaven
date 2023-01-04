@@ -1,7 +1,8 @@
 // global params
-let interval = 1000; // ms
+let interval = 2000; // ms
 let tensionProb = 0;
 let level = 1;
+const rareNotesProb = 0.125;
 
 
 
@@ -36,16 +37,19 @@ class Chord {
                 ret += `<sup>(${t[0]})</sup>`;
             }
         } else if (t.length) {
-            if (rand(2) && t.every(e => e[0] === 'b' || e[0] === '#')) {
-                ret += t.join('');
-            } else {
-                ret += `<sup>(${t.join(',')})</sup>`;
-            }
+            (rand(2) && t.every(e => e[0] === 'b' || e[0] === '#') ?
+                ret += t.join('') :
+                ret += `<sup>(${t.join(',')})</sup>`
+            );
         }
 
         // root
         while (true) {
-            const root = notes[rand(notes.length)];
+            const root = (
+                Math.random() > rareNotesProb ?
+                    notes[rand(notes.length)] :
+                    notes_rare[rand(notes_rare.length)]
+            );
             if (root.slice(-1) === ret[0]) continue;
             ret = root + ret;
             break;
@@ -60,6 +64,10 @@ class Chord {
 
 
 const chords = [
+    // basic
+    new Chord(['M7'], [], 0),
+    new Chord(['m7'], [], 0),
+    new Chord(['7'],  [], 0),
 
     // maj
     new Chord(
@@ -279,9 +287,12 @@ const chords = [
 
 const notes = [
     'C', 'D', 'E', 'F', 'G', 'A', 'B',
-    'Cb', 'Db', 'Eb', 'Fb', 'Gb', 'Ab', 'Bb',
-    'C#', 'D#', 'E#', 'F#', 'G#', 'A#', 'B#',
+    'Db', 'Eb', 'Gb', 'Ab', 'Bb',
+    'C#', 'D#',  'F#', 'G#', 'A#',
 ]
+const notes_rare = [
+    'Cb', 'Fb', 'E#', 'B#',
+];
 
 
 const showChord = () => {
@@ -332,11 +343,10 @@ window.onload = () => {
 
     const intervalSlider = document.getElementById('interval');
     intervalSlider.oninput = () => {
-        interval = 1000. * (1.125 ** intervalSlider.value);
+        const x = intervalSlider.value;
+        interval = 2000. * (1.078125 ** (x<0? -((-x)**1.875): x));
         document.getElementById('interval-label').textContent
             = `${(interval / 1000).toFixed(2)}s`;
-    };
-    intervalSlider.onchange = () => {
         (async () => {
             return clearInterval(timerID);
         })().then(() => {
@@ -353,7 +363,10 @@ window.onload = () => {
 
     const levelRadios = document.querySelectorAll("[name=level]");
     levelRadios.forEach(e => {
-        e.onchange = () => level = e.value;
+        e.onchange = () => {
+            level = e.value;
+            if (f) showChord();
+        }
     });
 
 
