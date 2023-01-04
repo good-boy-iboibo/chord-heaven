@@ -2,7 +2,7 @@
 let interval = 2000; // ms
 let tensionProb = 0;
 let level = 1;
-const rareNotesProb = 0.125;
+const rareNotesProb = 1/16;
 
 
 
