@@ -337,8 +337,11 @@ window.onload = () => {
             = `${(interval / 1000).toFixed(2)}s`;
     };
     intervalSlider.onchange = () => {
-        clearInterval(timerID);
-        timerID = setInterval(showChord, interval);
+        (async () => {
+            return clearInterval(timerID);
+        })().then(() => {
+            if (f) timerID = setInterval(showChord, interval);
+        });
     };
 
     const tensionSlider = document.getElementById('tension');
@@ -359,7 +362,7 @@ window.onload = () => {
 }
 
 
-let f = true;
+let f = true; // true: running, false: pausing
 const toggle = () => {
     if (f) {
         clearInterval(timerID);
