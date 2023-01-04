@@ -75,9 +75,18 @@
                     border-radius: 0.3em;
                     text-align: center;
                 }
-                input[type=radio]:checked + label {
-                    background-color: var(--main);
+                :checked + label {
                     color: var(--bg);
+                    opacity: 0.90625;
+                }
+                :checked + [for=l0] {
+                    background-color: hsl(105deg 78% 50%);
+                }
+                :checked + [for=l1] {
+                    background-color: hsl(60deg 78% 50%);
+                }
+                :checked + [for=l2] {
+                    background-color: hsl(15deg 100% 61%);
                 }
 
 
@@ -92,7 +101,7 @@
             transform: translateY(-50%) translateX(-50%);
 
             font-family: 'Gentium Book Plus';
-            font-size: 13vw;
+            font-size: 14vw;
             white-space: nowrap;
             text-align: center;
         }
@@ -102,7 +111,7 @@
 
             font-family: 'Inconsolata';
             font-size: 4vw;
-            opacity: 0.8;
+            opacity: 0.75;
         }
         img {
             width: 0.72ch;
@@ -133,13 +142,13 @@
             <input
                 id="interval"
                 type="range"
-                min="-24"
-                max="32"
-                step="1"
+                min="-8"
+                max="24"
+                step="0.5"
                 value="0"
             />
             <label for="interval">Time interval&nbsp;
-                <span id="interval-label">1.00s</span>
+                <span id="interval-label">2.00s</span>
             </label>
         </div>
         <div class="bar-item tension">
@@ -158,13 +167,20 @@
         <div class="bar-item level">
             <div>
                 <input
+                    id="l0"
+                    type="radio"
+                    value="0"
+                    name="level"
+                />
+                <label for="l0">basic</label>
+                <input
                     id="l1"
                     type="radio"
                     value="1"
                     name="level"
                     checked
                 />
-                <label for="l1">only simple</label>
+                <label for="l1">various</label>
             </div>
             <div>
                 <input
@@ -173,7 +189,7 @@
                     value="2"
                     name="level"
                 />
-                <label for="l2">include complex</label>
+                <label for="l2">complex</label>
             </div>
         </div>
     </div>
