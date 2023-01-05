@@ -1,13 +1,13 @@
 <!doctype html>
 <html>
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <title>Chord Heaven</title>
     <link rel="icon" type="image/png" href="anaguma.png?">
 
     <script src="main.js?"></script>
 
-    <!-- gentium book plus -->
+    <!-- gentium book plus 400 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus&display=swap" rel="stylesheet">
@@ -18,8 +18,8 @@
 
     <style>
         :root {
-            --main: hsl(45deg 8% 89%);
-            --bg: hsl(0deg 0% 8%);
+            --main: hsl(45deg 7% 89%);
+            --bg: hsl(0deg 0% 7%);
         }
         html, body {
             background-color: var(--bg);
@@ -32,7 +32,7 @@
         #bar {
             position: absolute;
             width: 100vw;
-            margin: 3.8vw 0;
+            margin-top: 4vh;
 
             display: flex;
             justify-content: space-around;
@@ -40,12 +40,12 @@
             font-size: 2.2vw;
         }
         .bar-item {
-            margin: 0 3.8vw;
+            margin: 0 4vw;
             display: flex;
             flex-direction: column;
         }
         [for=interval], [for=tension] {
-            margin-top: 0.9em;
+            margin-top: 1em;
         }
             .bar-item.interval {
                 flex-grow: 1;
@@ -57,6 +57,7 @@
                 }
             .bar-item.tension {
                 flex-grow: 0;
+                margin: 0;
             }
                 #tension-label {
                     display: inline-block;
@@ -71,8 +72,8 @@
                 }
                 input[type=radio] + label {
                     display: block;
-                    padding: 0.3em;
-                    border-radius: 0.3em;
+                    padding: 0.25em 0.4em;
+                    border-radius: 0.25em;
                     text-align: center;
                 }
                 :checked + label {
@@ -113,17 +114,18 @@
             opacity: 0.75;
         }
         img {
-            width: 0.72ch;
             margin: 0 0.06ch;
         }
         .flat {
+            width: 0.72ch;
             transform: translate(0.09ch, -0.15ex);
         }
         .sharp {
-            transform: scale(0.84) translate(0.01ch, 0.68ex);
+            width: 0.60ch;
+            transform: translate(0.01ch, 0.33ex);
         }
         /* guideline */
-        /* #chord::after {
+        #chord::after {
             content: "";
             width: 100%;
             border-bottom: solid 1px red;
@@ -131,13 +133,13 @@
             bottom: 1.46ex;
             left: 0;
             margin: 0;
-        } */
+        }
     </style>
 </head>
 
 <body>
     <div id="bar">
-        <div class="bar-item interval">         
+        <div class="bar-item interval">
             <input
                 id="interval"
                 type="range"
