@@ -11,6 +11,7 @@ const rand = (x) => {
     return Math.floor(Math.random() * x);
 };
 
+let lastRoot = '';
 
 class Chord {
     constructor(names, tensions, level) {
@@ -50,8 +51,9 @@ class Chord {
                     notes[rand(notes.length)] :
                     notes_rare[rand(notes_rare.length)]
             );
-            if (root.slice(-1) === ret[0]) continue;
+            if (root === lastRoot || root.slice(-1) === ret[0]) continue;
             ret = root + ret;
+            lastRoot = root;
             break;
         }
 
@@ -71,7 +73,7 @@ const chords = [
 
     // maj
     new Chord(
-        ['', 'maj', /*'M', 'Δ'*/],
+        ['', 'maj'],
         ['9', '#11'],
         1
     ),
@@ -295,11 +297,16 @@ const notes_rare = [
 ];
 
 
+let lastQual = '';
+
 const showChord = () => {
     let chordObj;
     while (true) {
         chordObj = chords[rand(chords.length)];
-        if (chordObj.level <= level) break;
+        if (chordObj.level <= level && chordObj.names[0] !== lastQual) {
+            lastQual = chordObj.names[0];
+            break;
+        }
     }
     const str = chordObj.generate()
         .replaceAll('b', flatTag)
