@@ -1,13 +1,13 @@
 <!doctype html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>Chord Heaven</title>
     <link rel="icon" type="image/png" href="anaguma.png?">
 
     <script src="main.js?"></script>
 
-    <!-- gentium book plus 400 -->
+    <!-- gentium book plus -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus&display=swap" rel="stylesheet">
@@ -32,7 +32,7 @@
         #bar {
             position: absolute;
             width: 100vw;
-            margin: 4vh 0;
+            margin: 3.8vw 0;
 
             display: flex;
             justify-content: space-around;
@@ -40,7 +40,7 @@
             font-size: 2.2vw;
         }
         .bar-item {
-            margin: 0 4vw;
+            margin: 0 3.8vw;
             display: flex;
             flex-direction: column;
         }
@@ -52,7 +52,7 @@
             }
                 #interval-label {
                     display: inline-block;
-                    width: 7ch;
+                    width: 6ch;
                     text-align: right;
                 }
             .bar-item.tension {
@@ -60,7 +60,7 @@
             }
                 #tension-label {
                     display: inline-block;
-                    width: 5ch;
+                    width: 4ch;
                     text-align: right;
                 }
             .bar-item.level {
@@ -88,7 +88,6 @@
                 :checked + [for=l2] {
                     background-color: hsl(15deg 100% 61%);
                 }
-
 
         #container {
             height: 100vh;
@@ -138,7 +137,7 @@
 
 <body>
     <div id="bar">
-        <div class="bar-item interval">
+        <div class="bar-item interval">         
             <input
                 id="interval"
                 type="range"
@@ -165,32 +164,28 @@
             </label>
         </div>
         <div class="bar-item level">
-            <div>
-                <input
-                    id="l0"
-                    type="radio"
-                    value="0"
-                    name="level"
-                />
-                <label for="l0">basic</label>
-                <input
-                    id="l1"
-                    type="radio"
-                    value="1"
-                    name="level"
-                    checked
-                />
-                <label for="l1">various</label>
-            </div>
-            <div>
-                <input
-                    id="l2"
-                    type="radio"
-                    value="2"
-                    name="level"
-                />
-                <label for="l2">complex</label>
-            </div>
+            <input
+                id="l0"
+                type="radio"
+                name="level"
+                value="0"
+            />
+            <label for="l0">basic</label>
+            <input
+                id="l1"
+                type="radio"
+                name="level"
+                value="1"
+                checked
+            />
+            <label for="l1">various</label>
+            <input
+                id="l2"
+                type="radio"
+                name="level"
+                value="2"
+            />
+            <label for="l2">complex</label>
         </div>
     </div>
     <div id="container" onclick="toggle();">
